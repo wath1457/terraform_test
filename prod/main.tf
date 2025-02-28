@@ -13,15 +13,15 @@ provider "aws" {
 
 resource "aws_s3_bucket" "example" {
   bucket = "wath1457-tf-example-bucket"
+  tags = {
+    Name = "prod"
+  }
 }
 
 resource "aws_s3_bucket_ownership_controls" "example" { # acl 제어를 위해 요구됨
   bucket = aws_s3_bucket.example.id
   rule {
     object_ownership = "BucketOwnerPreferred"
-  }
-  tags = {
-    Name = "prod"
   }
 }
 
